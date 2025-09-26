@@ -121,9 +121,9 @@ Deze documentatie beschrijft de geautomatiseerde test pipeline voor UC09 Registr
 === UC09 REGISTRATIE GEBRUIKER TESTS ===
 Start tijd: 2024-01-15 10:30:00
 
-🧪 Test 1: Happy Path - Succesvolle registratie
-🧪 Test 2: Unhappy Path - Email al in gebruik
-🧪 Test 3: Validatie tests
+Test 1: Happy Path - Succesvolle registratie
+Test 2: Unhappy Path - Email al in gebruik
+Test 3: Validatie tests
 
 === TEST RESULTATEN ===
 Eind tijd: 2024-01-15 10:35:00
@@ -142,9 +142,9 @@ Eind tijd: 2024-01-15 10:35:00
 
 | Test Type | Status | Details |
 |-----------|--------|---------|
-| Happy Path | ✅ Geslaagd | Succesvolle registratie met geldige gegevens |
-| Unhappy Path | ✅ Geslaagd | Email uniekheid controle werkt correct |
-| Validatie | ✅ Geslaagd | Alle input validaties functioneren |
+| Happy Path | Geslaagd | Succesvolle registratie met geldige gegevens |
+| Unhappy Path | Geslaagd | Email uniekheid controle werkt correct |
+| Validatie | Geslaagd | Alle input validaties functioneren |
 ```
 
 ## Team Zichtbaarheid
@@ -180,10 +180,10 @@ Eind tijd: 2024-01-15 10:35:00
 
 De geautomatiseerde test pipeline voor UC09 Registratie Gebruiker biedt:
 
-✅ **Geautomatiseerde testuitvoering** binnen de CI/CD pipeline  
-✅ **Duidelijke logging** en feedback in alle stappen  
-✅ **Zichtbare resultaten** voor het hele team via artefacten  
-✅ **Pull Request integratie** voor directe feedback  
-✅ **Uitgebreide rapportage** met test details en conclusies  
+**Geautomatiseerde testuitvoering** binnen de CI/CD pipeline  
+**Duidelijke logging** en feedback in alle stappen  
+**Zichtbare resultaten** voor het hele team via artefacten  
+**Pull Request integratie** voor directe feedback  
+**Uitgebreide rapportage** met test details en conclusies  
 
 De pipeline zorgt voor betrouwbare, herhaalbare tests en transparante communicatie van test resultaten naar het development team.
