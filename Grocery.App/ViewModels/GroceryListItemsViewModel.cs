@@ -18,11 +18,14 @@ namespace Grocery.App.ViewModels
         
         public ObservableCollection<GroceryListItem> MyGroceryListItems { get; set; } = [];
         public ObservableCollection<Product> AvailableProducts { get; set; } = [];
+        private List<Product> _allAvailableProducts = [];
 
         [ObservableProperty]
         GroceryList groceryList = new(0, "None", DateOnly.MinValue, "", 0);
         [ObservableProperty]
         string myMessage;
+        [ObservableProperty]
+        string emptyViewMessage = "Er zijn geen producten meer om toe te voegen";
 
         public GroceryListItemsViewModel(IGroceryListItemsService groceryListItemsService, IProductService productService, IFileSaverService fileSaverService)
         {
@@ -42,9 +45,13 @@ namespace Grocery.App.ViewModels
         private void GetAvailableProducts()
         {
             AvailableProducts.Clear();
+            _allAvailableProducts.Clear();
             foreach (Product p in _productService.GetAll())
                 if (MyGroceryListItems.FirstOrDefault(g => g.ProductId == p.Id) == null  && p.Stock > 0)
+                {
                     AvailableProducts.Add(p);
+                    _allAvailableProducts.Add(p);
+                }
         }
 
         partial void OnGroceryListChanged(GroceryList value)
@@ -67,6 +74,7 @@ namespace Grocery.App.ViewModels
             product.Stock--;
             _productService.Update(product);
             AvailableProducts.Remove(product);
+            _allAvailableProducts.Remove(product);
             OnGroceryListChanged(GroceryList);
         }
 
@@ -83,6 +91,43 @@ namespace Grocery.App.ViewModels
             catch (Exception ex)
             {
                 await Toast.Make($"Opslaan mislukt: {ex.Message}").Show(cancellationToken);
+            }
+        }
+
+        [RelayCommand]
+        public void SearchProducts(string searchTerm)
+        {
+            if (string.IsNullOrWhiteSpace(searchTerm))
+            {
+                // Als zoekterm leeg is, toon alle beschikbare producten
+                AvailableProducts.Clear();
+                foreach (var product in _allAvailableProducts)
+                {
+                    AvailableProducts.Add(product);
+                }
+                EmptyViewMessage = "Er zijn geen producten meer om toe te voegen";
+            }
+            else
+            {
+                // Filter producten op basis van zoekterm (case-insensitive)
+                AvailableProducts.Clear();
+                var filteredProducts = _allAvailableProducts.Where(p => 
+                    p.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase));
+                
+                foreach (var product in filteredProducts)
+                {
+                    AvailableProducts.Add(product);
+                }
+                
+                // Stel de juiste melding in afhankelijk van of er resultaten zijn
+                if (!filteredProducts.Any())
+                {
+                    EmptyViewMessage = "Er zijn geen producten die aan de zoekopdracht voldoen.";
+                }
+                else
+                {
+                    EmptyViewMessage = "Er zijn geen producten meer om toe te voegen";
+                }
             }
         }
 

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Grocery.App.ViewModels"
+             x:Class="Grocery.App.Views.RegisterView"
+             x:DataType="vm:RegisterViewModel"
+             Title="Registreren">
+
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="20">
+            
+            <!-- Titel -->
+            <Label Text="Nieuwe Account Aanmaken" 
+                   FontSize="24" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center" 
+                   Margin="0,0,0,20"/>
+
+            <!-- Naam veld -->
+            <Frame BackgroundColor="White" 
+                   HasShadow="True" 
+                   CornerRadius="10" 
+                   Padding="15">
+                <StackLayout>
+                    <Label Text="Naam" 
+                           FontSize="16" 
+                           FontAttributes="Bold" 
+                           TextColor="#333"/>
+                    <Entry Text="{Binding Name}" 
+                           Placeholder="Voer uw volledige naam in" 
+                           FontSize="16"/>
+                </StackLayout>
+            </Frame>
+
+            <!-- Email veld -->
+            <Frame BackgroundColor="White" 
+                   HasShadow="True" 
+                   CornerRadius="10" 
+                   Padding="15">
+                <StackLayout>
+                    <Label Text="Email" 
+                           FontSize="16" 
+                           FontAttributes="Bold" 
+                           TextColor="#333"/>
+                    <Entry Text="{Binding Email}" 
+                           Placeholder="voer@email.in" 
+                           Keyboard="Email" 
+                           FontSize="16"/>
+                </StackLayout>
+            </Frame>
+
+            <!-- Wachtwoord veld -->
+            <Frame BackgroundColor="White" 
+                   HasShadow="True" 
+                   CornerRadius="10" 
+                   Padding="15">
+                <StackLayout>
+                    <Label Text="Wachtwoord" 
+                           FontSize="16" 
+                           FontAttributes="Bold" 
+                           TextColor="#333"/>
+                    <Entry Text="{Binding Password}" 
+                           Placeholder="Minimaal 6 karakters" 
+                           IsPassword="True" 
+                           FontSize="16"/>
+                </StackLayout>
+            </Frame>
+
+            <!-- Bevestig wachtwoord veld -->
+            <Frame BackgroundColor="White" 
+                   HasShadow="True" 
+                   CornerRadius="10" 
+                   Padding="15">
+                <StackLayout>
+                    <Label Text="Bevestig Wachtwoord" 
+                           FontSize="16" 
+                           FontAttributes="Bold" 
+                           TextColor="#333"/>
+                    <Entry Text="{Binding ConfirmPassword}" 
+                           Placeholder="Herhaal uw wachtwoord" 
+                           IsPassword="True" 
+                           FontSize="16"/>
+                </StackLayout>
+            </Frame>
+
+            <!-- Foutmelding -->
+            <Label Text="{Binding ErrorMessage}" 
+                   TextColor="Red" 
+                   FontSize="14" 
+                   HorizontalOptions="Center" 
+                   IsVisible="{Binding HasError}"/>
+
+            <!-- Succesmelding -->
+            <Label Text="{Binding SuccessMessage}" 
+                   TextColor="Green" 
+                   FontSize="14" 
+                   HorizontalOptions="Center" 
+                   IsVisible="{Binding HasSuccess}"/>
+
+            <!-- Registreer knop -->
+            <Button Text="Account Aanmaken" 
+                    Command="{Binding RegisterCommand}" 
+                    BackgroundColor="#C49B33" 
+                    TextColor="White" 
+                    FontSize="18" 
+                    FontAttributes="Bold" 
+                    CornerRadius="10" 
+                    HeightRequest="50" 
+                    Margin="0,20,0,0"/>
+
+            <!-- Terug naar login -->
+            <Button Text="Terug naar Inloggen" 
+                    Command="{Binding GoToLoginCommand}" 
+                    BackgroundColor="Transparent" 
+                    TextColor="#C49B33" 
+                    FontSize="16" 
+                    BorderColor="#C49B33" 
+                    BorderWidth="2" 
+                    CornerRadius="10" 
+                    HeightRequest="45"/>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

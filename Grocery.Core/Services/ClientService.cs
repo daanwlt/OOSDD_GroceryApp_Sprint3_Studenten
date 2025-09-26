@@ -32,5 +32,10 @@ namespace Grocery.Core.Services
             List<Client> clients = _clientRepository.GetAll();
             return clients;
         }
+
+        public Client Add(Client client)
+        {
+            return _clientRepository.Add(client);
+        }
     }
 }

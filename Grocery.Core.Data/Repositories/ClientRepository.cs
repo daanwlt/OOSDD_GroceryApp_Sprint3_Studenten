@@ -33,5 +33,17 @@ namespace Grocery.Core.Data.Repositories
         {
             return clientList;
         }
+
+        public Client Add(Client client)
+        {
+            // Genereer een nieuw ID
+            int newId = clientList.Count > 0 ? clientList.Max(c => c.Id) + 1 : 1;
+            
+            // Maak een nieuwe client met het gegenereerde ID
+            var newClient = new Client(newId, client.Name, client.EmailAddress, client.Password);
+            clientList.Add(newClient);
+            
+            return newClient;
+        }
     }
 }

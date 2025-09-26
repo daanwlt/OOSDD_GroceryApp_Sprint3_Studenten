@@ -11,5 +11,13 @@
         <Entry Placeholder="Password" Text="{Binding Password}" IsPassword="True" />
         <Button Text="Login" Command="{Binding LoginCommand}" />
         <Label Text="{Binding LoginMessage}" TextColor="Red" />
+        
+        <!-- Registratie knop -->
+        <Button Text="Nog geen account? Registreer hier" 
+                Command="{Binding GoToRegisterCommand}" 
+                BackgroundColor="Transparent" 
+                TextColor="#C49B33" 
+                FontSize="14" 
+                Margin="0,20,0,0"/>
     </StackLayout>
 </ContentPage>
